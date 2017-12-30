@@ -9,7 +9,7 @@ It currently supports only Webpack 3.x.
 npm i webpack-hot-dev-clients
 ```
 
-webpack
+Webpack development config
 
 ```diff
 module.exports = {

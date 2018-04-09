@@ -1,9 +1,12 @@
 webpack-hot-dev-clients
 ---
 
-This is an alternative client for [WebpackDevServer](https://github.com/webpack/webpack-dev-server) that shows a syntax error overlay.
+This alternative [WebpackDevServer](https://github.com/webpack/webpack-dev-server) combines the functionality of:
 
-It currently supports only Webpack 3.x.
+> 1. It only supports their simplest configuration (hot updates on same server).  
+> 2. It makes some opinionated choices on top, like adding a syntax error overlay that looks similar to our console output.  
+
+It currently supports only Webpack 3.x above.
 
 ```bash
 npm i webpack-hot-dev-clients

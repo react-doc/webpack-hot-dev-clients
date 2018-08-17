@@ -18,9 +18,9 @@
   },
   "license": "ISC",
   "dependencies": {
-    "colors-cli": "^1.0.9",
-    "react-error-overlay": "^3.0.0",
-    "sockjs-client": "^1.1.4",
+    "colors-cli": "^1.0.17",
+    "react-error-overlay": "^4.0.0",
+    "sockjs-client": "^1.1.5",
     "strip-ansi": "^4.0.0"
   }
 }

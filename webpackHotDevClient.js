@@ -1,3 +1,12 @@
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+'use strict';
+
 // This alternative WebpackDevServer combines the functionality of:
 // https://github.com/webpack/webpack-dev-server/blob/webpack-1/client/index.js
 // https://github.com/webpack/webpack/blob/webpack-1/hot/dev-server.js
@@ -21,7 +30,9 @@ ErrorOverlay.setEditorHandler(function editorHandler(errorLocation) {
     '?fileName=' +
     window.encodeURIComponent(errorLocation.fileName) +
     '&lineNumber=' +
-    window.encodeURIComponent(errorLocation.lineNumber || 1)
+    window.encodeURIComponent(errorLocation.lineNumber || 1) +
+    '&colNumber=' +
+    window.encodeURIComponent(errorLocation.colNumber || 1)
   );
 });
 
@@ -30,7 +41,7 @@ ErrorOverlay.setEditorHandler(function editorHandler(errorLocation) {
 // runtime error. To prevent confusing behavior, we forcibly reload the entire
 // application. This is handled below when we are notified of a compile (code
 // change).
-// See https://github.com/facebookincubator/create-react-app/issues/3096
+// See https://github.com/facebook/create-react-app/issues/3096
 var hadRuntimeError = false;
 ErrorOverlay.startReportingRuntimeErrors({
   onError: function () {
@@ -200,7 +211,7 @@ connection.onmessage = function (e) {
       handleErrors(message.data);
       break;
     default:
-      // Do nothing.
+    // Do nothing.
   }
 };
 
@@ -247,7 +258,7 @@ function tryApplyUpdates(onHotUpdateSuccess) {
   }
 
   // https://webpack.github.io/docs/hot-module-replacement.html#check
-  var result = module.hot.check( /* autoApply */ true, handleApplyUpdates);
+  var result = module.hot.check(/* autoApply */ true, handleApplyUpdates);
 
   // // Webpack 2 returns a Promise instead of invoking a callback
   if (result && result.then) {

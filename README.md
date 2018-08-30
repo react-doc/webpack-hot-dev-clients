@@ -1,6 +1,8 @@
 webpack-hot-dev-clients
 ---
 
+> `webpack-hot-dev-clients` form [react-dev-utils](https://github.com/facebook/create-react-app/blob/next/packages/react-dev-utils/openBrowser.js).
+
 This alternative [WebpackDevServer](https://github.com/webpack/webpack-dev-server) combines the functionality of:
 
 > 1. It only supports their simplest configuration (hot updates on same server).  

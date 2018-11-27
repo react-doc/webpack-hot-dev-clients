@@ -23,31 +23,25 @@ var launchEditorEndpoint = require('./launchEditorEndpoint');
 var formatWebpackMessages = require('./formatWebpackMessages');
 var ErrorOverlay = require('react-error-overlay');
 
-ErrorOverlay.setEditorHandler(function editorHandler(errorLocation) {
-  // Keep this sync with errorOverlayMiddleware.js
-  fetch(
-    launchEditorEndpoint +
-    '?fileName=' +
-    window.encodeURIComponent(errorLocation.fileName) +
-    '&lineNumber=' +
-    window.encodeURIComponent(errorLocation.lineNumber || 1) +
-    '&colNumber=' +
-    window.encodeURIComponent(errorLocation.colNumber || 1)
-  );
-});
-
 // We need to keep track of if there has been a runtime error.
 // Essentially, we cannot guarantee application state was not corrupted by the
 // runtime error. To prevent confusing behavior, we forcibly reload the entire
 // application. This is handled below when we are notified of a compile (code
 // change).
-// See https://github.com/facebook/create-react-app/issues/3096
+// See https://github.com/facebookincubator/create-react-app/issues/3096
+// -> https://github.com/facebook/create-react-app/issues/3096
 var hadRuntimeError = false;
 ErrorOverlay.startReportingRuntimeErrors({
+  launchEditorEndpoint: url.format({
+    protocol: window.location.protocol,
+    hostname: window.location.hostname,
+    port: parseInt(process.env.PORT, 10) + 1 || window.location.port,
+    pathname: launchEditorEndpoint,
+  }),
   onError: function () {
     hadRuntimeError = true;
   },
-  filename: '/static/js/bundle.js',
+  filename: process.env.REACT_BUNDLE_PATH || '/static/js/bundle.js',
 });
 
 if (module.hot && typeof module.hot.dispose === 'function') {
@@ -62,7 +56,7 @@ var connection = new SockJS(
   url.format({
     protocol: window.location.protocol,
     hostname: window.location.hostname,
-    port: window.location.port,
+    port: parseInt(process.env.PORT, 10) + 1 || window.location.port,
     // Hardcoded in WebpackDevServer
     pathname: '/sockjs-node',
   })

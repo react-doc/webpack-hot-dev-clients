@@ -1,6 +1,6 @@
 {
   "name": "webpack-hot-dev-clients",
-  "version": "1.0.6",
+  "version": "2.0.0",
   "description": "react-dev-utils version of webpackHotDevClient.",
   "main": "index.js",
   "scripts": {
@@ -18,9 +18,9 @@
   },
   "license": "ISC",
   "dependencies": {
-    "colors-cli": "^1.0.17",
-    "react-error-overlay": "^4.0.0",
-    "sockjs-client": "^1.1.5",
-    "strip-ansi": "^4.0.0"
+    "colors-cli": "1.0.17",
+    "react-error-overlay": "5.1.0",
+    "sockjs-client": "1.1.5",
+    "strip-ansi": "4.0.0"
   }
 }

@@ -32,7 +32,7 @@ var ErrorOverlay = require('react-error-overlay');
 // -> https://github.com/facebook/create-react-app/issues/3096
 var hadRuntimeError = false;
 ErrorOverlay.startReportingRuntimeErrors({
-  launchEditorEndpoint: url.format({
+  listenToOpenInEditor: url.format({
     protocol: window.location.protocol,
     hostname: window.location.hostname,
     port: parseInt(process.env.PORT, 10) + 1 || window.location.port,

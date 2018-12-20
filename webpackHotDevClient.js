@@ -23,6 +23,9 @@ var launchEditorEndpoint = require('./launchEditorEndpoint');
 var formatWebpackMessages = require('./formatWebpackMessages');
 var ErrorOverlay = require('react-error-overlay');
 
+
+var PORT = parseInt(process.env.WS_PORT, 10) || parseInt(process.env.PORT, 10);
+
 // We need to keep track of if there has been a runtime error.
 // Essentially, we cannot guarantee application state was not corrupted by the
 // runtime error. To prevent confusing behavior, we forcibly reload the entire
@@ -35,7 +38,7 @@ ErrorOverlay.startReportingRuntimeErrors({
   listenToOpenInEditor: url.format({
     protocol: window.location.protocol,
     hostname: window.location.hostname,
-    port: parseInt(process.env.PORT, 10) + 1 || window.location.port,
+    port: PORT || window.location.port,
     pathname: launchEditorEndpoint,
   }),
   onError: function () {
@@ -56,7 +59,7 @@ var connection = new SockJS(
   url.format({
     protocol: window.location.protocol,
     hostname: window.location.hostname,
-    port: parseInt(process.env.PORT, 10) + 1 || window.location.port,
+    port: PORT || window.location.port,
     // Hardcoded in WebpackDevServer
     pathname: '/sockjs-node',
   })
